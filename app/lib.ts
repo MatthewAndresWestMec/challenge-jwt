@@ -1,4 +1,5 @@
 import { SignJWT, jwtVerify } from "jose";
+import { redirect } from "next/dist/server/api-utils";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,8 +22,8 @@ export async function decrypt(input: string): Promise<any> {
 export async function login(formData: FormData) {
   // Verify credentials && get the user
 
-  const user = { email: formData.get("email"), password: formData.get("password"), name: formData.get("John") };
-if (user.email == 'mandre361@west-mec.org'){
+  const user = { email: formData.get("email"), password: formData.get("password"), name: "Matthew Andres" };
+if (user.email == process.env.EMAIL && user.password == process.env.SECRET_PASS){
   // Create the session
   const expires = new Date(Date.now() + 10 * 1000);
   const session = await encrypt({ user, expires });
@@ -30,6 +31,8 @@ if (user.email == 'mandre361@west-mec.org'){
   // Save the session in a cookie
   cookies().set("session", session, { expires, httpOnly: true });
 
+}else{
+console.log("Invalid credentials")
 }
 }
 

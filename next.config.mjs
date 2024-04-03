@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    SECRET_KEY: "eggs and bacon"
+  env: {
+    SECRET_KEY: 'secrets',
+    SECRET_PASS: 'mandre361@west-mec.org',
+    SECRET_EMAIL: '1234',
+  },
 };
 
 export default nextConfig;
