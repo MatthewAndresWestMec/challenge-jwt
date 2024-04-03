@@ -1,3 +1,5 @@
+"use server"
+
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -21,16 +23,19 @@ export async function decrypt(input: string): Promise<any> {
 export async function login(formData: FormData) {
   // Verify credentials && get the user
 
-  const user = { email: formData.get("email"), password: formData.get("password"), name: formData.get("John") };
-if (user.email == 'mandre361@west-mec.org'){
-  // Create the session
-  const expires = new Date(Date.now() + 10 * 1000);
-  const session = await encrypt({ user, expires });
+  const user = { email: formData.get("email"), password: formData.get("password"), name: "Matthew Andres" };
 
-  // Save the session in a cookie
-  cookies().set("session", session, { expires, httpOnly: true });
+  if (user.email == process.env.SECRET_EMAIL && user.password == process.env.SECRET_PASS){
+    // Create the session
+    const expires = new Date(Date.now() + 10 * 1000);
+    const session = await encrypt({ user, expires });
 
-}
+    // Save the session in a cookie
+    cookies().set("session", session, { expires, httpOnly: true });
+    return true;
+  }else{
+    return false
+  }
 }
 
 export async function logout() {
