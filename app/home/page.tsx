@@ -17,6 +17,7 @@ const Home = () => {
         }}><button type='submit'>Logout</button></form></li>
       </ul>
     </nav>
+    <h1>HERE IS THE HOME PAGE</h1>
     </div>
   )
 }

@@ -1,14 +1,10 @@
 "use client"
 
 import {redirect} from "next/navigation";
-import {getSession, login, logout} from './lib'
-import { useEffect, useState } from "react";
+import { login, logout} from './lib'
 
-export default function Login() {
-  const [session, setSession] = useState(null);
-  useEffect(function(){
-    getSession().then(result => setSession(result));
-  },[session])
+export default function SignIn() {
+
   return(
     <section>
       <form action={
@@ -28,7 +24,7 @@ export default function Login() {
           await logout();
           redirect('/');
         }}><button type='submit'>Logout</button>
-        {/* <pre>{JSON.stringify(session,null,2)}</pre> */}
+    
         </form>
     </section>
   );
