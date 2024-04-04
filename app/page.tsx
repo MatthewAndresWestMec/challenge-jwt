@@ -1,4 +1,3 @@
-'use client';
 
 import { redirect } from 'next/navigation';
 import { login, logout } from './lib';
@@ -8,6 +7,7 @@ export default function SignIn() {
     <section>
       <form
         action={async (formdata) => {
+          'use server' 
           var success = await login(formdata);
           if (success) {
             redirect('/home');
@@ -22,6 +22,7 @@ export default function SignIn() {
 
       <form
         action={async (formdata) => {
+          'use server' 
           await logout();
           redirect('/');
         }}>

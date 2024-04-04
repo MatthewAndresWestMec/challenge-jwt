@@ -1,4 +1,3 @@
-"use server"
 
 import { SignJWT, jwtVerify } from "jose";
 import { redirect } from "next/dist/server/api-utils";
