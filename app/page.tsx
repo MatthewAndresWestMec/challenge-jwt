@@ -26,8 +26,8 @@ export default function SignIn() {
           redirect('/');
         }}>
         <button type='submit'>Logout</button>
+        <h1>mandre361@west-mec.org and 1234</h1>
       </form>
-      <h1>Try this email: mandre361@west-mec.org password 1234</h1>
     </section>
   );
 }
